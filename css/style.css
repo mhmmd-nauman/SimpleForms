@@ -1,0 +1,189 @@
+/*/*@charset "utf-8";
+/* CSS Document */
+
+/*body{
+	margin:0;
+	background:#EFF0E0;
+	font-family:Tahoma, Geneva, sans-serif;
+	font-size:12px;
+	color:#333;
+	}
+	
+#main_content{
+	width:900px;
+	height:auto;
+	border:1px solid #666;
+	border: 1px solid #fff;
+    border-radius: 10px 10px 10px 10px;
+	margin: 10px auto;
+	padding:10px;
+	background:#FFFFFF;
+	}
+	
+.form{
+	overflow:hidden;
+	}
+	
+.form h1{
+	background: none repeat scroll 0 0 #E8E8E8;
+    color: #006699;
+    font-size: 15px;
+    margin: 0;
+    padding: 5px;
+    width: 500px;
+	}	
+	
+
+.row {
+    overflow: hidden;
+    width: 400px;
+	margin-bottom: 5px;
+}
+
+
+.rowlabel {
+    color: #000000;
+    display: inline-block;
+    float: left;
+    font-size: 12px;
+    margin-bottom: 10px;
+    width: 136px;
+}
+
+label{
+ 	color: #FF0000;
+    float: right;
+    text-align: center;
+}
+
+.input {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #E8E8E8;
+    box-shadow: 2px 2px 5px #DDDDDD inset;
+    font-size: 12px;
+    margin-left: 0;
+    padding: 5px 6px;
+    width: 250px;
+	margin-bottom: 10px;
+}
+
+
+.textarea {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #E8E8E8;
+    box-shadow: 2px 2px 5px #DDDDDD inset;
+    font-size: 12px;
+    margin-left: 0;
+    padding: 5px 6px;
+    width: 250px;
+	height:70px;
+	margin-bottom: 10px;
+}
+
+	
+.section{
+	border: 0px solid #FF0000;
+    float: left;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    overflow: hidden;
+    padding: 5px;
+    width: 888px;
+	}
+	
+.select_left{
+	float:left;
+	width:425px;
+	height:auto;
+	border:0px solid #000;
+	border-right:1px solid #EFF0E0;
+	}
+	
+.select_right{
+	float:right;
+	width:425px;
+	height:auto;
+	border:0px solid #000;
+	}
+				
+.hr{
+	width:900px;
+	height:3px;
+	background:#069;
+	overflow: hidden;
+	}
+	
+.button{
+	border: 1px solid #CCCCCC;
+    height: 25px;
+    margin-left: 108px;
+    width: 100px;
+	}
+	
+.button a:hover{
+	border: 1px solid #CCCCCC;
+    height: 25px;
+    margin-left: 108px;
+    width: 100px;
+	background:#033;
+	}
+	
+.check {
+    overflow: hidden;
+    width: 400px;
+	margin-bottom: 5px;
+}
+
+
+.check label {
+    color: #000000;
+    width:200px;
+}
+
+.select_bottom{
+	border: 0px solid #FF0000;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    overflow: hidden;
+    padding: 5px;
+    width: 888px;
+	}*/
+
+/*redesign	*/
+table,
+form{
+	width:900px;
+	margin:0 auto;
+	font-size: 13pt;
+}
+
+input[type='text'].withBorder{
+	border: 1px solid #ddd;
+}
+table{
+	border: 1px solid #000;
+}
+input[type='text'],
+select{
+	width:100%;
+	border:none;
+	text-align: center;
+}		
+label{
+	margin-right: 5px;
+}	
+.height36{
+	height:36px;
+}	
+.buttonWrapper{
+	position: relative;
+	padding:20px 0;
+}	
+.button{
+	display: block;
+	float:right;
+}	
+.textarea{
+	width:99% !important;
+	border:none;
+}

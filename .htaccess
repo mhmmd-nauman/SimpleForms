@@ -1,0 +1,5 @@
+#FORCE WWW IN URL
+RewriteEngine On
+RewriteCond %{HTTP_HOST} ^(biztiko\.com)$ [NC]
+RewriteRule .* http://www.%1%{REQUEST_URI} [R=301,L]
+# END FORCE WWW IN URL 
