@@ -431,17 +431,16 @@ header("Location:AssignForm.php?message=success");
 				</TD>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE>
 					<FONT COLOR="#FF3333">
-						<select name="MonthsInBusiness" class="input"  validate="required:true" title="Please select your years in business">
-							<option value=""></option>
-							<option>Less than 1 Month</option>
-							<option>1 - 3 Month</option>
-							<option>3 - 5 Month</option>
-							<option>5 - 10 Month</option>
-							<option>10+ Month</option>
+						<select name="MonthsInBusiness" class="input"  validate="required:true" title="Please select your Months in business">
+							<option value="Lessthan1Month">Less than 1 Month</option>
+							<option value="1-3Month">1 - 3 Month</option>
+							<option value="3-5Month">3 - 5 Month</option>
+							<option value="5-10Month">5 - 10 Month</option>
+							<option value="10+Month">10+ Month</option>
 						</select>
 					</FONT>
 				</TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF3333"><input name="BusinessSICCode" id="business_code" type="text" class="input" /></FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF3333"><input name="BusinessSICCode" id="business_code" type="text" class="input" validate="required:true" title="Please Enter business Code"/></FONT></TD>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF3333"><input name="BusinessPurpose" id="business_description" type="text" class="input" /></FONT></TD>
 			</TR>
 			<TR>
@@ -549,8 +548,8 @@ header("Location:AssignForm.php?message=success");
 				
 			</TR>
 		 <TR>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><input name="contact_name" id="email_borrower3" type="text" class="input" /></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><input name="contact_email" id="email_borrower3" type="text" class=" input" /></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><input name="contact_name" id="" type="text"validate="required:true" title="Please Enter the Contact Name" /></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><input name="contact_email" id="" type="text" validate="required:true" title="Please Enter the Contact Email" /></TD>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"colspan="2"><input name="contactPhone" id="email_borrower3" type="text" class="datepicker input" /></TD>
 				
 			</TR>

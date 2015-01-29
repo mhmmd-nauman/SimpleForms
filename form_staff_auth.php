@@ -436,7 +436,7 @@ background-color:#006600; color:#fff; text-align:center; font-family:Arial, Helv
 			</TR>
 			<TR>
 			    <TD  COLSPAN=1 HEIGHT=30 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666"> BUSINESS NAME  
-				<TD  COLSPAN=3 HEIGHT=30 ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#FFFFFF">  <input name="BusinessName" id="EntityFormation" type="text" class="input" />  </TD>
+				<TD  COLSPAN=3 HEIGHT=30 ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#FFFFFF">  <input name="BusinessName" id="EntityFormation" type="text" class="input"validate="required:true" title="Please Enter business Name" />  </TD>
 			</TR>
 			<TR>
 				<TD   HEIGHT=34 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666"><B> Entity Formation<BR><FONT SIZE="2">(Sole Proprietor, LLC, Corp, etc.)    </B></TD>
@@ -458,15 +458,14 @@ background-color:#006600; color:#fff; text-align:center; font-family:Arial, Helv
 				  </select>				</TD>
 				<TD   ALIGN=CENTER VALIGN=MIDDLE>
 					  
-						<select name="MonthsInBusiness" class="input" id="MonthsInBusiness" title="Please select your years in business"  validate="required:true">
-							<option value=""></option>
-							<option>Less than 1 year</option>
-							<option>1 - 3 years</option>
-							<option>3 - 5 years</option>
-							<option>5 - 10 years</option>
-							<option>10+ years</option>
+						<select name="MonthsInBusiness" class="input" id="MonthsInBusiness" title="Please select your Months in business"  validate="required:true">
+							<option value="Lessthan1Month">Less than 1 Month</option>
+							<option value="1-3Month">1 - 3 Month</option>
+							<option value="3-5Month">3 - 5 Month</option>
+							<option value="5-10Month">5 - 10 Month</option>
+							<option value="10+Month">10+ Month</option>
 				  </select>				</TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE>  <input name="Code" id="Code" type="text" class="input" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE>  <input name="Code" id="Code" type="text" class="input" validate="required:true" title="Please Enter business Code"/>  </TD>
 				<TD   ALIGN=CENTER VALIGN=MIDDLE>  <input name="Purpose" id="Purpose" type="text" class="input" />  </TD>
 			</TR>
 			<TR>

@@ -472,11 +472,11 @@ header("Location:CS-Form.php?message=success");
 					<FONT COLOR="#FF3333">
 						<select name="YearsInBusiness" class="input"  validate="required:true" title="Please select your years in business">
 							<option value=""></option>
-							<option>Less than 1 year</option>
-							<option>1 - 3 years</option>
-							<option>3 - 5 years</option>
-							<option>5 - 10 years</option>
-							<option>10+ years</option>
+							<option value="Lessthan1year">Less than 1 year</option>
+							<option value="1-3years">1 - 3 years</option>
+							<option value="3-5years">3 - 5 years</option>
+							<option value="5-10years">5 - 10 years</option>
+							<option value="10+years">10+ years</option>
 						</select>
 					</FONT>				</TD>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF3333"><input name="BusinessSICCode" id="BusinessSICCode" type="text" class="input"validate="required:true" title="Please Enter the Business Code" /></FONT></TD>
