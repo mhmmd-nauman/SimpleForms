@@ -338,13 +338,14 @@ $().ready(function() {
 
 <div id="main_content">
 <?php
-  if(isset($_POST['submit'])){
+if($_POST['authorize_form']== 1){
+ 
 	$username="root";
 	$password="";
 	$database="form";
 	$link=mysql_connect("localhost",$username,$password);
 	@mysql_select_db($database) or die( "Unable to select database");
-	$assign_form ="describe `assignment_form`";
+	$assign_form ="describe `programauthorization`";
 	$result=mysql_query($assign_form);
 	while($row = mysql_fetch_array($result)){
 		$arr_fields[] = $row['Field'];
@@ -376,8 +377,9 @@ $().ready(function() {
 	 $strQuery = substr($strQuery, 0, strlen($strQuery) - 1);
 	 echo $strQuery .= ");" ;
 	mysql_query($strQuery) or die("Error in the consult.." . mysql_error($link));
+	header("Location: http://localhost/form101/form_staff_auth.php?message=success");
 	}
-	
+	 
 ?>
 <style type="text/css">
 .headrow{
@@ -399,8 +401,21 @@ td {
     border-right: 0px solid #000000;
     color:#FFF;
 }
+
+.message{
+background-color:#006600; color:#fff; text-align:center; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold;
+}
+
 </style>
     <form name="form" id="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="form" method="post">
+	<?php 
+	if($_REQUEST['message']=='success'){?>
+	<TABLE FRAME=VOID CELLSPACING=0 COLS=4 RULES=NONE BORDER=0>
+	<tr>
+		<td colspan="4" class="message">Record Added Successfully!</td>
+	</tr>
+	</TABLE>
+	<?php } ?>
 	<TABLE FRAME=VOID CELLSPACING=0 COLS=4 RULES=NONE BORDER=0>
 		<COLGROUP>
 			<COL WIDTH=238>
@@ -421,7 +436,7 @@ td {
 			</TR>
 			<TR>
 			    <TD  COLSPAN=1 HEIGHT=30 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666"> BUSINESS NAME  
-				<TD  COLSPAN=3 HEIGHT=30 ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#FFFFFF">  <input name="business_name" id="business_name" type="text" class="input" />  </TD>
+				<TD  COLSPAN=3 HEIGHT=30 ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#FFFFFF">  <input name="BusinessName" id="EntityFormation" type="text" class="input" />  </TD>
 			</TR>
 			<TR>
 				<TD   HEIGHT=34 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666"><B> Entity Formation<BR><FONT SIZE="2">(Sole Proprietor, LLC, Corp, etc.)    </B></TD>
@@ -432,7 +447,7 @@ td {
 			<TR>
 				<TD   HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE>
 					  
-						<select name="entity_formation" id="entity_formation" class="input" validate="required:true" title="Please select entity formation.">
+						<select name="EntityFormation" id="EntityFormation" class="input" validate="required:true" title="Please select entity formation.">
 							<option value="" selected="selected"></option>
 							<option value="soleprop">Sole Proprietor</option>
 							<option value="llc">LLC - Limited Liability Company</option>
@@ -440,32 +455,32 @@ td {
 							<option value="ccorp">C-Corp</option>
 							<option value="nonprofit">NonProfit</option>
 							<option value="other">Other</option>
-						</select>				</TD>
+				  </select>				</TD>
 				<TD   ALIGN=CENTER VALIGN=MIDDLE>
 					  
-						<select name="num_of_years" class="input"  validate="required:true" title="Please select your years in business">
+						<select name="MonthsInBusiness" class="input" id="MonthsInBusiness" title="Please select your years in business"  validate="required:true">
 							<option value=""></option>
 							<option>Less than 1 year</option>
 							<option>1 - 3 years</option>
 							<option>3 - 5 years</option>
 							<option>5 - 10 years</option>
 							<option>10+ years</option>
-						</select>				</TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE>  <input name="business_code" id="business_code" type="text" class="input" />  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE>  <input name="business_description" id="business_description" type="text" class="input" />  </TD>
+				  </select>				</TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE>  <input name="Code" id="Code" type="text" class="input" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE>  <input name="Purpose" id="Purpose" type="text" class="input" />  </TD>
 			</TR>
 			<TR>
 				<TD   ROWSPAN=3 HEIGHT=51 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666"> BUSINESS ADDRESS  </TD>
 				<TD   ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666"> Street  </TD>
-				<TD   COLSPAN=2 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0000"><input name="street" id="street" type="text" class="input" />  </TD>
+				<TD   COLSPAN=2 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0000"><input name="Street" id="Street" type="text" class="input" />  </TD>
 			</TR>
 			<TR>
 				<TD   ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666"> City  </TD>
-				<TD   COLSPAN=2 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0000"><input name="city" id="city" type="text" class="input" />  </TD>
+				<TD   COLSPAN=2 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0000"><input name="City" id="City" type="text" class="input" />  </TD>
 			</TR>
 			<TR>
 				<TD   ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666"> Zip  </TD>
-				<TD   COLSPAN=2 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0000"><input name="zip" type="text" class="input" />  </TD>
+				<TD   COLSPAN=2 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0000"><input name="Zip" type="text" class="input" id="Zip" />  </TD>
 			</TR>
 		</TBODY>
 	</TABLE>
@@ -488,21 +503,21 @@ td {
 			</TR>
 			<TR>
 				<TD   HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"> Name  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="name_borrower1" id="name_borrower1" type="text" class="input" />  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="name_borrower2" id="name_borrower2" type="text" class="input" />  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="name_borrower3" id="name_borrower3" type="text" class="input" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="Owner1Name" id="Owner1Name" type="text" class="input" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="Owner2Name" id="Owner2Name" type="text" class="input" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="Owner3Name" id="Owner3Name" type="text" class="input" />  </TD>
 			</TR>
 			<TR>
 				<TD   HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"> Phone Number  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="phone_borrower1" id="name_borrower1" type="text" class="input" />  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="phone_borrower2" id="name_borrower2" type="text" class="input" />  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="phone_borrower3" id="name_borrower3" type="text" class="input" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="Owner1Phone" id="name_borrower1" type="text" class="input" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="Owner2Phone" id="name_borrower2" type="text" class="input" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="Owner3Phone" id="name_borrower3" type="text" class="input" />  </TD>
 			</TR>
 			<TR>
 				<TD   HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"> eMail Address  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="email_borrower1" id="email_borrower1" type="text" class="input" />  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="email_borrower2" id="email_borrower2" type="text" class="input" />  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="email_borrower3" id="email_borrower3" type="text" class="input" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="Owner1Email" id="Owner1Email" type="text" class="input" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="Owner2Email" id="Owner2Email" type="text" class="input" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="Owner3Email" id="Owner3Email" type="text" class="input" />  </TD>
 			</TR>
 		</TBODY>
 	</TABLE>
@@ -522,9 +537,9 @@ td {
 				<TD   ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"> Contract Date   </TD>
 			</TR>
 			<TR>
-				<TD   HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="contract_name" type="text" class="input" />  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="contract_number" type="text" class="input" />  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="contract_date" class='datepicker input' type="text"  />  </TD>
+				<TD   HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="ContractName" type="text" class="input" id="ContractName" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="ContractProjectRefNo" type="text" class="input" id="ContractProjectRefNo" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="ContractDate" type="text" class='datepicker input' id="ContractDate"  />  </TD>
 			</TR>
 			<TR>
 				<TD   HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"> Project Name  </TD>
@@ -532,9 +547,9 @@ td {
 				<TD   ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"> Project Estimation Completion Date  </TD>
 			</TR>
 			<TR>
-				<TD   HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="project_name" type="text" class="input" />  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="project_date" class='datepicker input' type="text" />  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="project_compl_date" class='datepicker input' type="text" />  </TD>
+				<TD   HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="ProjectName" type="text" class="input" id="ProjectName" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="StartDate" type="text" class='datepicker input' id="StartDate" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="ProjectCompletionDate" type="text" class='datepicker input' id="ProjectCompletionDate" />  </TD>
 			</TR>
 			<TR>
 				<TD   HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"> Partner Name   </TD>
@@ -542,9 +557,9 @@ td {
 				<TD   ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"> Partner Contact Title   </TD>
 			</TR>
 			<TR>
-				<TD   HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="contact_name" type="text" class="input" />  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="contact_title" type="text" class="input" />  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="contact_email" type="text" class="input" />  </TD>
+				<TD   HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="PartnerName" type="text" class="input" id="PartnerName" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="PartnerContactName" type="text" class="input" id="PartnerContactName" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="PartnerContactTitle" type="text" class="input" id="PartnerContactTitle" />  </TD>
 			</TR>
 			<TR>
 				<TD   HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"> Partner Address</TD>
@@ -552,9 +567,9 @@ td {
 				<TD   ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"> Partner Contact Phone    </TD>
 			</TR>
 			<TR>
-				<TD   HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="contact_name" type="text" class="input" />  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="contact_title" type="text" class="input" />  </TD>
-				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="contact_email" type="text" class="input" />  </TD>
+				<TD   HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="PartnerAddress" type="text" class="input" id="PartnerAddress" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="PartnerContacteMail" type="text" class="input" id="PartnerContacteMail" />  </TD>
+				<TD   ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="PartnerContactPhone" type="text" class="input" id="PartnerContactPhone" />  </TD>
 			</TR>
 			
 			<TR>
@@ -578,23 +593,23 @@ td {
                 </tr>
                 <tr>
                   <td style="background-color:rgb(102, 102, 102)">NAME</td>
-                  <td ><input name="street2" id="street2" type="text" class="input" /></td>
+                  <td ><input name="ApprovedByName" id="ApprovedByName" type="text" class="input" /></td>
                 </tr>
                 <tr>
                   <td style="background-color:rgb(102, 102, 102)">TITLE </td>
-                  <td ><input name="street3" id="street3" type="text" class="input" /></td>
+                  <td ><input name="ApprovedByTitle" id="ApprovedByTitle" type="text" class="input" /></td>
                 </tr>
                 <tr>
                   <td style="background-color:rgb(102, 102, 102)">SIGNATURE</td>
-                  <td ><input name="street4" id="street4" type="text" class="input" /></td>
+                  <td ><input name="ApprovedBySignature" id="ApprovedBySignature" type="text" class="input" /></td>
                 </tr>
                 <tr>
                   <td style="background-color:rgb(102, 102, 102)">DATE</td>
-                  <td ><input name="project_date2" class='datepicker input' type="text" /></td>
+                  <td ><input name="ApprovedByDate" type="text" class='datepicker input' id="ApprovedByDate" /></td>
                 </tr>
                 <tr style="border:none;">
                   <td width="25%" style="border:none;">&nbsp;</td>
-                  <td style="border:none;"><textarea name="project_description" class="input textarea" rows="4" cols="50"></textarea></td>
+                  <td style="border:none;"><textarea name="ApprovedDescription" class="input textarea" rows="4" cols="50"></textarea></td>
                 </tr>
               </table></TD>
 		  </TR>
@@ -602,6 +617,8 @@ td {
 	</TABLE>
 	<div class='buttonWrapper'>
 		<input name="submit" type="submit" value="Submit" class="button" />	
+		<input name="authorize_form" type="hidden" value="1" />
+		
 	</div>
 </form>
 </div>

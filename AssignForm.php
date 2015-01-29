@@ -1,6 +1,6 @@
 <?php
-//include_once("config/config.php");
-//include "../../header.php";
+include_once("config/config.php");
+include "../../header.php";
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -326,7 +326,11 @@ $().ready(function() {
   });
 </script>
 
-
+<style>
+.message{
+background-color:#006600; color:#fff; text-align:center; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold;
+}
+</style>
 </head>
 
 <body>
@@ -369,11 +373,20 @@ while(list ($strKey, $strVal) = each($arr_fields))
 
 // remove last comma
  $strQuery = substr($strQuery, 0, strlen($strQuery) - 1);
- echo $strQuery .= ");" ;
+  $strQuery .= ");" ;
 mysql_query($strQuery) or die("Error in the consult.." . mysql_error($link));
+header("Location: http://localhost/gitforms/AssignForm.php?message=success");
 }
 ?>
     <form name="form" id="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="form" method="post">
+	<?php 
+	if($_REQUEST['message']=='success'){?>
+	<TABLE FRAME=VOID CELLSPACING=0 COLS=4 RULES=NONE BORDER=0>
+	<tr>
+		<td colspan="4" class="message">Record Added Successfully!</td>
+	</tr>
+	</TABLE>
+	<?php } ?>
 	<TABLE FRAME=VOID CELLSPACING=0 COLS=4 RULES=NONE BORDER=0>
 		<COLGROUP>
 			<COL WIDTH=238>
@@ -394,7 +407,7 @@ mysql_query($strQuery) or die("Error in the consult.." . mysql_error($link));
 			</TR>
 			<TR>
 			    <TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" COLSPAN=1 HEIGHT=30 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666"><FONT COLOR="#FFFFFF">BUSINESS NAME</FONT>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" COLSPAN=3 HEIGHT=30 ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#FFFFFF"><FONT COLOR="#FF3333"><input name="BUSINESSNAME" id="business_name" type="text" class="input" /></FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" COLSPAN=3 HEIGHT=30 ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#FFFFFF"><FONT COLOR="#FF3333"><input name="BUSINESSNAME" id="business_name" type="text" class="input" validate="required:true"/></FONT></TD>
 			</TR>
 			<TR>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=34 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666"><B><FONT COLOR="#FFFFFF">Entity Formation<BR><FONT SIZE="2">(Sole Proprietor, LLC, Corp, etc.)</FONT></FONT></B></TD>
@@ -485,75 +498,96 @@ mysql_query($strQuery) or die("Error in the consult.." . mysql_error($link));
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="Owner3Email" id="email_borrower3" type="text" class="input" /></FONT></TD>
 			</TR>
 		</TBODY>
+		<TR>
+			  <TD   HEIGHT=18 colspan="4" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" style=" color:#FFFFFF;">PROGRAM REQUEST  </TD>
+		  </TR>
+		 <TR>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Requested By</FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;" colspan="3"><input name="RequestedBy" id="email_borrower3" type="text" class="input" /></TD>
+				
+			</TR> 
+			 <TR>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Title</FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;" colspan="3"><input name="RequestedByTitle" id="email_borrower3" type="text" class="input" /></TD>
+				
+			</TR> 
+			 <TR>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Signature</FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;" colspan="3"><input name="RequestedBySignature" id="email_borrower3" type="text" class="input" /></TD>
+				
+			</TR> 
+			<TR>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Request Date</FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;" colspan="3">
+				<input name="RequestDate" id="RequestDate" type="text" class="datepicker input" /></TD>
+				
+			</TR>
+			
+			
 	</TABLE>
-	<TABLE FRAME=VOID CELLSPACING=0 COLS=3 RULES=NONE BORDER=0>
-		<COLGROUP>
-			<COL WIDTH=317>
-			<COL WIDTH=317>
-			<COL WIDTH=317>
-		</COLGROUP>
-		<TBODY>
+	<br/><br/>
+	<TABLE FRAME=VOID CELLSPACING=0 COLS=4 RULES=NONE BORDER=0>
+		<TR>
+			  <TD   HEIGHT=18 colspan="4" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" style=" color:#FFFFFF;">ASSIGNMENT AUTHORIZATION   </TD>
+		  </TR>
 			<TR>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" COLSPAN=3 WIDTH=951 HEIGHT=17 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#0084D1"><B><FONT COLOR="#FFFFFF">LOAN DETAILS</FONT></B></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Name</FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Address</FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"colspan="2"><FONT COLOR="#FFFFFF">Assignment Request Date</FONT></TD>
+				
+			</TR>
+		 <TR>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><input name="AssignmentAthorName" id="email_borrower3" type="text" class="input" /></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><input name="AssignmentAthorAddress" id="email_borrower3" type="text" class=" input" /></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"colspan="2"><input name="AssignmentDate" id="email_borrower3" type="text" class="datepicker input" /></TD>
+				
+			</TR>
+		<TR>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Primary Contact Name</FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Primary Contact eMail</FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"colspan="2"><FONT COLOR="#FFFFFF">Primary Contact Phone </FONT></TD>
+				
+			</TR>
+		 <TR>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><input name="contact_name" id="email_borrower3" type="text" class="input" /></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><input name="contact_email" id="email_borrower3" type="text" class=" input" /></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"colspan="2"><input name="contactPhone" id="email_borrower3" type="text" class="datepicker input" /></TD>
+				
 			</TR>
 			<TR>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666"><FONT COLOR="#FFFFFF">Request Amount</FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666"><FONT COLOR="#FFFFFF">Request Date</FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666"><FONT COLOR="#FFFFFF">Planned Use of Funds</FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Assigned Name</FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Assigned eMail</FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"colspan="2"><FONT COLOR="#FFFFFF">Assigned Phone </FONT></TD>
+				
+			</TR>
+		 <TR>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><input name="AssignedName" id="email_borrower3" type="text" class="input" /></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><input name="AssignedeMail" id="email_borrower3" type="text" class=" input" /></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"colspan="2"><input name="AssignedPhone" id="email_borrower3" type="text" class="datepicker input" /></TD>
+				
 			</TR>
 			<TR>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="Request_Amount" type="text" class="input" /></FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input type="date" name="RequestDate" id="RequestDate"  /></FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="PlanofFund" type="text" class="input" /></FONT></TD>
-			</TR>
-		</TBODY>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Assigned By</FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;" colspan="3"><input name="AssignedBy" id="email_borrower3" type="text" class="input" /></TD>
+				
+			</TR> 
+			<TR>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Title</FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;" colspan="3"><input name="AssignedTitle" id="email_borrower3" type="text" class="input" /></TD>
+				
+			</TR> 
+			<TR>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Signature</FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;" colspan="3"><input name="AssignedSignature" id="email_borrower3" type="text" class="input" /></TD>
+				
+			</TR> 
+			<TR>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Assignment Date</FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="" SDNUM="1048;0;#.##0,00 &quot;lei&quot;" colspan="3"><input name="AssignmenedDate" id="email_borrower3" type="text" class=" datepicker input" /></TD>
+				
+			</TR> 
 	</TABLE>
-	<TABLE FRAME=VOID CELLSPACING=0 COLS=3 RULES=NONE BORDER=0>
-		<COLGROUP>
-			<COL WIDTH=317>
-			<COL WIDTH=317>
-			<COL WIDTH=317>
-		</COLGROUP>
-		<TBODY>
-			<TR>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" COLSPAN=3 WIDTH=951 HEIGHT=17 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#0084D1"><B><FONT COLOR="#FFFFFF">CONTRACT/PROJECT DETAILS</FONT></B></TD>
-			</TR>
-			<TR>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"><FONT COLOR="#FFFFFF">Contract name</FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"><FONT COLOR="#FFFFFF">Contract Number</FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"><FONT COLOR="#FFFFFF">Contract Date</FONT></TD>
-			</TR>
-			<TR>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="contract_name" type="text" class="input" /></FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="contract_number" type="text" class="input" /></FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="contract_date" class='datepicker' type="date" class="input" /></FONT></TD>
-			</TR>
-			<TR>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"><FONT COLOR="#FFFFFF">Project Name</FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"><FONT COLOR="#FFFFFF">Project Start Date</FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"><FONT COLOR="#FFFFFF">Project Estimation Completion Date</FONT></TD>
-			</TR>
-			<TR>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="project_name" type="text" class="input" /></FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="project_date" class='datepicker' type="date" class="input" /></FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="project_compl_date" class='datepicker' type="date" class="input" /></FONT></TD>
-			</TR>
-			<TR>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"><FONT COLOR="#FFFFFF">Contact name</FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"><FONT COLOR="#FFFFFF">Contact Title</FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"><FONT COLOR="#FFFFFF">Contact eMail</FONT></TD>
-			</TR>
-			<TR>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="contact_name" type="text" class="input" /></FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="contact_title" type="text" class="input" /></FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF0066"><input name="contact_email" type="text" class="input" /></FONT></TD>
-			</TR>
-			<TR>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=36 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#004586"><FONT COLOR="#FFFFFF">Work/Project Description</FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" COLSPAN=2 ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF3333"><textarea name="project_description" class="input textarea" rows="4" cols="50"></textarea></FONT></TD>
-			</TR>
-		</TBODY>
-	</TABLE>
+	
 	<div class='buttonWrapper'>
 		<input name="submit" type="submit" value="Submit" class="button" />
                 <input name="submitvalue" type="hidden" value="1" />

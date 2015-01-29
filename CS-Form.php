@@ -344,6 +344,9 @@ background-color:#1F497C; color:#FFFFFF;
 border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000;
 background-color:#244061; color:#FFFFFF; font-weight:bold;
 }
+.message{
+background-color:#006600; color:#fff; text-align:center; font-family:Arial, Helvetica, sans-serif; font-size:14px; font-weight:bold;
+}
 </style>
 </head>
 
@@ -387,11 +390,21 @@ while(list ($strKey, $strVal) = each($arr_fields))
 
 // remove last comma
  $strQuery = substr($strQuery, 0, strlen($strQuery) - 1);
- echo $strQuery .= ");" ;
+  $strQuery .= ");" ;
 mysql_query($strQuery) or die("Error in the consult.." . mysql_error($link));
+header("Location: http://localhost/form101/CS-Form.php?message=success");
 }
 ?>
     <form name="form" id="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="form" method="post">
+	<?php 
+	if($_REQUEST['message']=='success'){?>
+	<TABLE FRAME=VOID CELLSPACING=0 COLS=4 RULES=NONE BORDER=0>
+	<tr>
+		<td colspan="4" class="message">Record Added Successfully!</td>
+	</tr>
+	</TABLE>
+	<?php } ?>
+	
 	<TABLE FRAME=VOID CELLSPACING=0 COLS=4 RULES=NONE BORDER=0>
 		<COLGROUP>
 			<COL WIDTH=238>
@@ -425,7 +438,7 @@ mysql_query($strQuery) or die("Error in the consult.." . mysql_error($link));
 			</tr>
 			<tr>
 			<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" COLSPAN=1 HEIGHT=20 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#666666"><FONT COLOR="#FFFFFF">Date</FONT>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" COLSPAN=3 HEIGHT=20 ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#FFFFFF"><FONT COLOR="#FF3333"><input name="EvaluatedDate" id="EvaluatedDate" type="date" class="input" /></FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" COLSPAN=3 HEIGHT=20 ALIGN=LEFT VALIGN=MIDDLE BGCOLOR="#FFFFFF"><FONT COLOR="#FF3333"><input name="EvaluatedDate" id="EvaluatedDate" type="" class="datepicker input" /></FONT></TD>
 			</tr>
 			
 			
@@ -466,7 +479,7 @@ mysql_query($strQuery) or die("Error in the consult.." . mysql_error($link));
 							<option>10+ years</option>
 						</select>
 					</FONT>				</TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF3333"><input name="BusinessSICCode" id="BusinessSICCode" type="text" class="input" /></FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF3333"><input name="BusinessSICCode" id="BusinessSICCode" type="text" class="input"validate="required:true" title="Please Enter the Business Code" /></FONT></TD>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE><FONT COLOR="#FF3333"><input name="BusinessPurpose" id="BusinessPurpose" type="text" class="input" /></FONT></TD>
 			</TR>
 			<TR>
@@ -518,7 +531,7 @@ mysql_query($strQuery) or die("Error in the consult.." . mysql_error($link));
 			
 		<TR>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#262626" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Start Date </FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="StartDate" id="StartDate" type="date" class="input" /></FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="StartDate" id="StartDate" type="text" class="datepicker input" /></FONT></TD>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="Status_Comments1" id="Status_Comments1" type="text" class="input" /></FONT></TD>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="Status_Comments3" id="Status_Comments3" type="text" class="input" /></FONT></TD>
 			</TR>
@@ -566,7 +579,7 @@ mysql_query($strQuery) or die("Error in the consult.." . mysql_error($link));
 			
 			<TR>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#262626" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Start Date </FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="StartDate2" id="StartDate2" type="text" class="input" /></FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="StartDate2" id="StartDate2" type="text" class="datepicker input" /></FONT></TD>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="StartDateStatus2" id="StartDateStatus2" type="text" class="input" /></FONT></TD>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="StartDateComments2" id="StartDateComments2" type="text" class="input" /></FONT></TD>
 			</TR>
@@ -619,7 +632,7 @@ mysql_query($strQuery) or die("Error in the consult.." . mysql_error($link));
 			<TR>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#262626" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Start Date </FONT></TD>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><font color="#FF0066">
-				  <input name="StartDate3" id="StartDate3" type="text" class="input" />
+				  <input name="StartDate3" id="StartDate3" type="text" class="datepicker input" />
 				</font></TD>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="StartDate3Status1" id="StartDate3Status1" type="text" class="input" /></FONT></TD>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="StartDate3Comments1" id="StartDate3Comments1" type="text" class="input" /></FONT></TD>
@@ -669,7 +682,7 @@ mysql_query($strQuery) or die("Error in the consult.." . mysql_error($link));
 			
 			<TR>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" HEIGHT=18 ALIGN=CENTER VALIGN=MIDDLE BGCOLOR="#262626" SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FFFFFF">Start Date </FONT></TD>
-				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="StartDate4" id="StartDate4" type="text" class="input" /></FONT></TD>
+				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="StartDate4" id="StartDate4" type="text" class="datepicker input" /></FONT></TD>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="StartDate4Status1" id="StartDate4Status1" type="text" class="input" /></FONT></TD>
 				<TD STYLE="border-top: 1px solid #000000; border-bottom: 1px solid #000000; border-left: 1px solid #000000; border-right: 1px solid #000000" ALIGN=CENTER VALIGN=MIDDLE SDNUM="1048;0;#.##0,00 &quot;lei&quot;"><FONT COLOR="#FF0066"><input name="StartDate4Comments1" id="StartDate4Comments1" type="text" class="input" /></FONT></TD>
 			</TR>
