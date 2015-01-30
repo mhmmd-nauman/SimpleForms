@@ -355,9 +355,9 @@ background-color:#006600; color:#fff; text-align:center; font-family:Arial, Helv
 <div id="main_content">
 <?php
 if($_POST['csform']== 1){
-$username="root";
-$password="";
-$database="form";
+$username="tglomo_wfqt1";
+$password="63oNprssnOpxqI";
+$database="tglomo_wfqt1_db";
 $link=mysql_connect("localhost",$username,$password);
 @mysql_select_db($database) or die( "Unable to select database");
 $assign_form ="describe `csform`";
@@ -392,7 +392,7 @@ while(list ($strKey, $strVal) = each($arr_fields))
  $strQuery = substr($strQuery, 0, strlen($strQuery) - 1);
   $strQuery .= ");" ;
 mysql_query($strQuery) or die("Error in the consult.." . mysql_error($link));
-header("Location: http://localhost/form101/CS-Form.php?message=success");
+header("Location:CS-Form.php?message=success");
 }
 ?>
     <form name="form" id="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" class="form" method="post">

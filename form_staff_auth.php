@@ -340,9 +340,9 @@ $().ready(function() {
 <?php
 if($_POST['authorize_form']== 1){
  
-	$username="root";
-	$password="";
-	$database="form";
+	$username="tglomo_wfqt1";
+	$password="63oNprssnOpxqI";
+	$database="tglomo_wfqt1_db";
 	$link=mysql_connect("localhost",$username,$password);
 	@mysql_select_db($database) or die( "Unable to select database");
 	$assign_form ="describe `programauthorization`";
@@ -377,7 +377,7 @@ if($_POST['authorize_form']== 1){
 	 $strQuery = substr($strQuery, 0, strlen($strQuery) - 1);
 	 echo $strQuery .= ");" ;
 	mysql_query($strQuery) or die("Error in the consult.." . mysql_error($link));
-	header("Location: http://localhost/form101/form_staff_auth.php?message=success");
+	header("Location:form_staff_auth.php?message=success");
 	}
 	 
 ?>
